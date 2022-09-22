@@ -24,6 +24,11 @@ export function StackRoutes() {
         name="confirmation"
         component={Confirmation}
       />
+
+      <Screen 
+        name="confirmationCheck"
+        component={Confirmation}
+      />
     </Navigator>
   )
 }
