@@ -30,6 +30,8 @@ export const THEME = {
   FONT_SIZE: {
     SM: 14,
     MD: 16,
-    LG: 24
+    LG: 24,
+    XLG: 32,
+    XXLG: 48
   }
 };

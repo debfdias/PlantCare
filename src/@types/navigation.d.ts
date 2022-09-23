@@ -4,6 +4,7 @@ export declare global {
     interface RootParamList {
       userID: undefined;
       confirmation: undefined;
+      plantSelector: undefined;
     }
   }
 }
