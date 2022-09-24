@@ -4,9 +4,9 @@
 </p>
 
 <h1 align="center">
-    <img alt = "Screen1" src = "./.github/screen1.png" width = "300px" />
-    <img alt = "Screen2" src = "./.github/screen2.png" width = "300px" />
-    <img alt = "Screen3" src = "./.github/screen3.png" width = "300px" height ="618px" />
+    <img alt = "Screen1" src = "./.github/screen1.png" width = "250px" />
+    <img alt = "Screen2" src = "./.github/screen2.png" width = "250px" />
+    <img alt = "Screen3" src = "./.github/screen3.png" width = "250px" height ="515px" />
 </h1>
 
 <p align="center">
