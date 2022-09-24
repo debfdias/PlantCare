@@ -33,5 +33,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingBottom: 8,
+    marginHorizontal: 16
   }
 });

@@ -15,6 +15,7 @@ export const THEME = {
 
     blue: '#3D7199',
     blue_light: '#EBF6FF',
+    blue_mid: '#8cb5d3',
 
     red: '#E83F5B',
 

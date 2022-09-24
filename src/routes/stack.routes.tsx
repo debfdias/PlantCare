@@ -5,6 +5,9 @@ import { Welcome } from '../screens/Welcome';
 import { UserID } from '../screens/UserID';
 import { Confirmation } from '../screens/Confirmation';
 import { PlantSelector } from "../screens/PlantSelector";
+import { RegisterPlant } from "../screens/RegisterPlant";
+import { MyPlants } from "../screens/MyPlants";
+import { TabRoutes } from "./tab.routes";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -28,7 +31,17 @@ export function StackRoutes() {
 
       <Screen 
         name="plantSelector"
-        component={PlantSelector}
+        component={TabRoutes}
+      />
+
+      <Screen 
+        name="registerPlant"
+        component={RegisterPlant}
+      />
+
+      <Screen 
+        name="myPlants"
+        component={MyPlants}
       />
     </Navigator>
   )

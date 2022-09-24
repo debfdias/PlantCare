@@ -9,21 +9,30 @@ interface PlantProps extends RectButtonProps {
   data: {
     name: string;
     photo: string;
+    hour?: string;
   }
 }
 
-export function PlantCardSelector({ data, ...rest }: PlantProps) {
+export function PlantCard({ data, ...rest }: PlantProps) {
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <RectButton style={styles.wrapper} {...rest}>
+    <GestureHandlerRootView>
+      <RectButton  style={styles.wrapper} {...rest}>
         <SvgFromUri 
           uri={data.photo}
-          width={70}
-          height={70}
+          width={50}
+          height={50}
         />
-        <Text style={styles.text}>
+        <Text style={styles.title}>
           {data.name}
         </Text>
+        <View style={styles.details}>
+          <Text style={styles.timeLabel}>
+            Watering at
+          </Text>
+          <Text style={styles.time}>
+            {data.hour}
+          </Text>
+        </View>
       </RectButton>
     </GestureHandlerRootView>
     

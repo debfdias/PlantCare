@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, SafeAreaView, TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Alert, View, Text, SafeAreaView, TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../../components/Button';
 import { THEME } from '../../theme';
@@ -27,8 +28,23 @@ export function UserID() {
     setName(value);
   }
 
-  function handleConfirm() {
-    navigation.navigate('confirmation');
+  async function handleConfirm() {
+    if(!name)
+      return Alert.alert('How we should call you? 🤨');
+
+    try{
+      await AsyncStorage.setItem('@plantcare:user', name);
+      navigation.navigate('confirmation', {
+        title: "Ready to go!",
+        subtitle: `Now we'll take care of your plants! ${"\n"} When it's time to water them, we'll let you know!`,
+        buttonTitle: "Let's go",
+        nextScreen: "plantSelector",
+        icon: "smile"
+      });
+
+    } catch {
+      return Alert.alert('Something went wrong...')
+    }
   }
 
   return (

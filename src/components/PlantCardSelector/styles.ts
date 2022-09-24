@@ -4,12 +4,17 @@ import { THEME } from '../../theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.COLORS.shape,
-    borderRadius: 20,
     alignItems: 'center',
     paddingVertical: 12,
-    margin: 10,
-    marginHorizontal: 20,
+  },
+  wrapper: {
+    backgroundColor: THEME.COLORS.shape,
+    flex: 1,
+    alignItems: 'center',
+    borderRadius: 20,
+    width: '85%',
+    padding: 8,
+    paddingVertical: 12
   },
   text: {
     color: THEME.COLORS.green_dark,
