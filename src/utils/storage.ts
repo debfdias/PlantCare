@@ -11,11 +11,12 @@ export interface PlantProps {
   frequency: {
     times: number;
     repeat_every: string;
-  },
+  };
+  hour: string;
   dateTimeNotification: Date;
 }
 
-interface StoragePlantProps {
+export interface StoragePlantProps {
   [id: string]: {
     data: PlantProps;
   }
@@ -66,4 +67,13 @@ export async function loadPlant(): Promise<PlantProps[]> {
   } catch(error: any) {
     throw new Error(error);
   }
+}
+
+export async function deletePlant(id: string): Promise<void> {
+  const data = await AsyncStorage.getItem('@plantcare:plants');
+  const plants = data ? (JSON.parse(data) as StoragePlantProps) : {};
+
+  delete plants[id];
+
+  await AsyncStorage.setItem('@plantcare:plants', JSON.stringify(plants));
 }

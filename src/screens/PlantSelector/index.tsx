@@ -126,7 +126,7 @@ export function PlantSelector() {
       <View style={styles.plantsList}>
         <FlatList 
           data={filterPlants}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => String(item.id)}
           renderItem={( { item } ) => (
             <PlantCardSelector 
               data={item}

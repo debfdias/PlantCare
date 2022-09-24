@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { View, 
   Text, 
-  Image
+  Image,
+  Alert
 } from 'react-native';
-
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { formatDistance } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 
-import waterDrop from '../../assets/waterdrop.png';
 import { Header } from '../../components/Header';
+import { PlantCard } from '../../components/PlantCard';
+import { Load } from '../../components/Load';
 
 import { styles } from './styles';
-import { loadPlant, PlantProps } from '../../utils/storage';
-import { FlatList } from 'react-native-gesture-handler';
-import { PlantCard } from '../../components/PlantCard';
-
+import { loadPlant, PlantProps, deletePlant } from '../../utils/storage';
+import waterDrop from '../../assets/waterdrop.png';
 
 export function MyPlants() {
   const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
@@ -39,14 +38,34 @@ export function MyPlants() {
     setLoading(false);
   }
 
+  function handleDelete(plant: PlantProps) {
+    Alert.alert('Delete', `Are you sure you want to delete ${plant.name}?`, [
+      {
+        text: 'No',
+        style: 'cancel'
+      },
+      {
+        text: 'Yes',
+        onPress: async () => {
+          try {
+            await deletePlant(plant.id);
+
+            setMyPlants((oldData) => oldData.filter((item) => item.id != plant.id));
+
+          } catch (error) {
+            Alert.alert('Something went wrong...');
+          }
+        }
+      }
+    ])
+  }
+
   useEffect(() => {
     loadStorageData();
   }, []);
 
-  const route = useRoute();
-  const navigation = useNavigation();
-
-
+  if(loading)
+    return <Load />
   return (
     <View style={styles.container}>
       <Header />
@@ -63,17 +82,20 @@ export function MyPlants() {
           Next waterings
         </Text>
 
-        <FlatList 
-          data={myPlants}
-          keyExtractor={(item) => String(item.id)} 
-          renderItem={({ item }) => (
-            <PlantCard 
-              data={item}
-            />
-          )}
-          contentContainerStyle={{ flex: 1 }}
-          showsVerticalScrollIndicator={false}        
-        />
+        <GestureHandlerRootView style={styles.wrapper}>
+          <FlatList 
+            data={myPlants}
+            keyExtractor={(item) => String(item.id)} 
+            renderItem={({ item }) => (
+              <PlantCard 
+                data={item}
+                handleDelete={() => handleDelete(item)}
+              />
+            )} 
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 20}}
+          />
+        </GestureHandlerRootView>
       </View>
     </View>
   );

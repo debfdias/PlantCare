@@ -7,6 +7,9 @@ export const styles = StyleSheet.create({
     backgroundColor: THEME.COLORS.background,
     paddingHorizontal: 30,
   },
+  wrapper: {
+    flex: 1
+  },
   spotlight: {
     backgroundColor: THEME.COLORS.blue_light,
     padding: 20,
@@ -30,7 +33,7 @@ export const styles = StyleSheet.create({
   },
   plants: {
     flex: 1,
-    width: '100%'
+    justifyContent: 'center',
   },
   plantTitle: {
     color: THEME.COLORS.heading,

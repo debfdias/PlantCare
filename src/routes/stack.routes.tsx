@@ -9,11 +9,13 @@ import { RegisterPlant } from "../screens/RegisterPlant";
 import { MyPlants } from "../screens/MyPlants";
 import { TabRoutes } from "./tab.routes";
 
+
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function StackRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
+
       <Screen 
         name="welcome"
         component={Welcome}
@@ -41,7 +43,7 @@ export function StackRoutes() {
 
       <Screen 
         name="myPlants"
-        component={MyPlants}
+        component={TabRoutes}
       />
     </Navigator>
   )

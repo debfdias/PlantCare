@@ -41,5 +41,17 @@ export const styles = StyleSheet.create({
     color: THEME.COLORS.body_light,
     fontFamily: THEME.FONT_FAMILY.REGULAR,
     fontSize: THEME.FONT_SIZE.MD
+  },
+  deletePlant: {
+    width: 100,
+    height: 86,
+    backgroundColor: THEME.COLORS.red,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    right: 12,
+    bottom: -8,
+    paddingLeft: 6
   }
 });

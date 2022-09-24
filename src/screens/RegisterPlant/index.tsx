@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, Image, Platform, Alert } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Platform, Alert, ScrollView } from 'react-native';
 import { SvgFromUri } from 'react-native-svg';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
@@ -71,73 +71,76 @@ export function RegisterPlant() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={handleReturn}>
-          <Entypo 
-            name="chevron-thin-left"
-            color={THEME.COLORS.green}
-            size={24}
-          />
-        </TouchableOpacity>
-      </View>
-      
-      <View style={styles.plantInfo}>
-        <SvgFromUri 
-          uri={plant.photo}
-          height={150}
-          width={150}
-        />
-        <Text style={styles.plantName}>
-          {plant.name}
-        </Text>
-
-        <Text style={styles.plantAbout}>
-          {plant.about}
-        </Text>
-
-      </View>
-        
-      <View style={styles.plantPanel}>
-        <View style={styles.plantTip}>
-          <Image 
-            source={waterDrop}
-            style={styles.tipImg}
-          />
-          <Text style={styles.tipText}>
-            {plant.water_tips}
-          </Text>
-        </View>
-
-        <Text style={styles.alertLabel}>
-          Best hour to water your plant:
-        </Text>
-
-        { Platform.OS === 'android' && (
-          <TouchableOpacity style={styles.buttonHour} onPress={showTimepicker}>
-            <Text style={styles.textButtonHour}>
-              {`Change ${format(date, 'HH:mm')}`}
-            </Text>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}
+    >
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={handleReturn}>
+            <Entypo 
+              name="chevron-thin-left"
+              color={THEME.COLORS.green}
+              size={24}
+            />
           </TouchableOpacity>
-        ) }
+        </View>
         
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="time"
-            is24Hour={true}
-            onChange={handleChangeTime}
+        <View style={styles.plantInfo}>
+          <SvgFromUri 
+            uri={plant.photo}
+            height={150}
+            width={150}
           />
-        )}
+          <Text style={styles.plantName}>
+            {plant.name}
+          </Text>
 
-        <Button 
-          title="Save plant"
-          onPress={handleRegisterPlant}
-        />
+          <Text style={styles.plantAbout}>
+            {plant.about}
+          </Text>
+
+        </View>
+          
+        <View style={styles.plantPanel}>
+          <View style={styles.plantTip}>
+            <Image 
+              source={waterDrop}
+              style={styles.tipImg}
+            />
+            <Text style={styles.tipText}>
+              {plant.water_tips}
+            </Text>
+          </View>
+
+          <Text style={styles.alertLabel}>
+            Best hour to water your plant:
+          </Text>
+
+          { Platform.OS === 'android' && (
+            <TouchableOpacity style={styles.buttonHour} onPress={showTimepicker}>
+              <Text style={styles.textButtonHour}>
+                {`Change ${format(date, 'HH:mm')}`}
+              </Text>
+            </TouchableOpacity>
+          ) }
+          
+          {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode="time"
+              is24Hour={true}
+              onChange={handleChangeTime}
+            />
+          )}
+
+          <Button 
+            title="Save plant"
+            onPress={handleRegisterPlant}
+          />
+        </View>
       </View>
-
-      
-    </View>
+    </ScrollView>
   );
 }
